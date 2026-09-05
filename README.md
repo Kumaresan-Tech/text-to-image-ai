@@ -2,6 +2,8 @@
 
 A production-ready, real-time AI text-to-image generation platform with a FastAPI backend, Next.js frontend, Celery worker pipeline, and multi-provider AI integration.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Kumaresan-Tech/text-to-image-ai)
+
 ## Features
 
 - **Real-time generation** with Server-Sent Events (SSE) progress streaming
