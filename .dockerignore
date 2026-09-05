@@ -1,0 +1,17 @@
+.git
+.gitignore
+.vscode
+.idea
+*.md
+LICENSE
+.env
+.env.*
+!.env.example
+__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+node_modules
+.next
+storage/
+deploy/

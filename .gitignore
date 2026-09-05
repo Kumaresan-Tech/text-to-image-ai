@@ -1,0 +1,61 @@
+# ── Dependencies ──────────────────────────────
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# ── Build Outputs ─────────────────────────────
+.next/
+out/
+build/
+dist/
+*.egg-info/
+
+# ── Environment Variables ─────────────────────
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ── IDE / Editor ──────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── OS Files ──────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Testing / Coverage ────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# ── Docker ────────────────────────────────────
+storage/
+
+# ── Logs ──────────────────────────────────────
+*.log
+logs/
+
+# ── Backups ───────────────────────────────────
+backups/
+
+# ── Misc ──────────────────────────────────────
+*.tmp
+*.bak
+
+# ── Temporary outputs and test images ──────────
+*.png
+*.jpg
+*.jpeg
+outputs/
+build-log.txt
+up-log.txt

@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+.vscode
+.idea
+*.md
+LICENSE
+Dockerfile
+docker-compose*.yml
+deploy/
+nginx/
+Makefile

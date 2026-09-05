@@ -1,0 +1,79 @@
+# ===================================================
+# Render Blueprint Specification — Text2Img Platform
+# https://render.com/docs/blueprint-spec
+# ===================================================
+
+services:
+  # ── Backend Web Service (FastAPI) ─────────────────────
+  - type: web
+    name: text2img-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATABASE_URL
+        fromDatabase:
+          name: text2img-db
+          property: connectionString
+      - key: DATABASE_URL_SYNC
+        fromDatabase:
+          name: text2img-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: HF_TOKEN
+        sync: false
+      - key: HUGGINGFACE_API_KEY
+        sync: false
+      - key: HUGGINGFACE_MODEL
+        value: black-forest-labs/FLUX.1-schnell
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.6-flash
+      - key: LLM_PROVIDER
+        value: gemini
+      - key: GEMINI_LLM_MODEL
+        value: gemini-3.6-flash
+      - key: AI_PROVIDER
+        value: huggingface
+      - key: STORAGE_BACKEND
+        value: local
+      - key: CORS_ORIGINS
+        value: '["*"]'
+      - key: REDIS_URL
+        value: redis://localhost:6379/0
+
+  # ── Frontend Web Service (Next.js 14) ─────────────────
+  - type: web
+    name: text2img-frontend
+    runtime: node
+    rootDir: frontend
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: text2img-backend
+          property: host
+      - key: GEMINI_API_KEY
+        sync: false
+
+# ── Managed PostgreSQL Database ─────────────────────────
+databases:
+  - name: text2img-db
+    databaseName: text2img
+    user: text2img
+    plan: free
+    region: oregon

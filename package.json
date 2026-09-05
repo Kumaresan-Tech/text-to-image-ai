@@ -1,0 +1,11 @@
+{
+  "name": "text-to-image-ai",
+  "version": "1.0.0",
+  "description": "AuraCraft AI — Text to Image Studio & Web App Platform",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "python dashboard.py",
+    "studio": "python dashboard.py"
+  }
+}
